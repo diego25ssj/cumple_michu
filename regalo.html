@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FDFBF7">
+  <title>Una canción para ti, Michu ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="gift-page-body">
+  <main class="gift-page">
+    <a class="gift-back-link" href="index.html">← Volver a nuestros recuerdos</a>
+
+    <section class="last-gift" aria-labelledby="last-gift-title">
+      <p class="last-gift-eyebrow">Un detalle para ti</p>
+      <h1 class="last-gift-heading" id="last-gift-title">Último Regalo ♡</h1>
+
+      <div class="song-card">
+        <p class="song-card-label">Una canción para acompañar este momento</p>
+        <h2 class="song-title">ONLY <span>— Lee Hi</span></h2>
+
+        <audio id="cancion" src="./cancion.mp3" preload="none"></audio>
+        <button class="song-toggle" id="song-toggle" type="button" aria-pressed="false">
+          Reproducir 🎵
+        </button>
+        <p class="song-status" id="song-status" aria-live="polite"></p>
+
+        <div class="lyrics-container">
+          <p class="lyrics-placeholder">Una canción para escuchar juntitos y celebrar todo lo bonito que compartimos. ♡</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="song-dedication" aria-labelledby="song-dedication-title">
+      <p class="last-gift-eyebrow">De mi corazón para ti</p>
+      <h2 class="last-gift-heading" id="song-dedication-title">Esta canción es para ti ♡</h2>
+      <div class="dedication-card">
+        <p>Si el camino se hace largo, quiero recorrerlo contigo; si la noche se vuelve gris, tu sonrisa me devuelve la luz.</p>
+        <p>En cada paso encuentro mi lugar a tu lado y, en cada mañana, una nueva razón para elegirte.</p>
+        <p>Hoy te regalo esta canción y una promesa sencilla: seguir construyendo, de tu mano, nuestros días más bonitos.</p>
+        <span>Te amo, Michu ♡</span>
+      </div>
+    </section>
+  </main>
+  <script src="script.js" defer></script>
+</body>
+</html>

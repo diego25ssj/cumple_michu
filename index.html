@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FDFBF7">
+  <title>Feliz cumpleaños, Michu ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --cream: #FDFBF7;
+      --lavender-blush: #FAE8ED;
+      --mimi-pink: #FDD5DF;
+      --pink: #FFC2D1;
+      --cherry-blossom: #FFB2C5;
+      --amaranth: #FFA2B9;
+      --coffee: #4A2E2B;
+      --wine: #5C2430;
+      --shadow: 0 18px 55px rgba(92, 36, 48, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--coffee);
+      background:
+        radial-gradient(ellipse at 10% 12%, rgba(250, 232, 237, .68), transparent 29rem),
+        radial-gradient(ellipse at 92% 80%, rgba(255, 194, 209, .22), transparent 30rem),
+        var(--cream);
+      font-family: "Nunito", sans-serif;
+    }
+
+    button { font: inherit; }
+
+    .page-shell {
+      position: relative;
+      width: min(100% - 40px, 900px);
+      margin: 0 auto;
+      padding: 28px 0 70px;
+    }
+
+    .top-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--wine);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .top-note::before,
+    .top-note::after {
+      width: 34px;
+      height: 1px;
+      content: "";
+      background: var(--cherry-blossom);
+    }
+
+    .welcome {
+      display: grid;
+      min-height: min(730px, calc(100svh - 75px));
+      place-items: center;
+      padding: 45px 0 65px;
+      text-align: center;
+      transition: opacity .45s ease, transform .45s ease;
+    }
+
+    .welcome-inner { max-width: 650px; }
+
+    .eyebrow {
+      margin: 0 0 7px;
+      color: var(--wine);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, .script {
+      font-family: "Caveat", cursive;
+      font-weight: 600;
+    }
+
+    .welcome h1 {
+      margin: 0;
+      color: var(--wine);
+      font-size: clamp(3.4rem, 10vw, 6.6rem);
+      line-height: .98;
+    }
+
+    .welcome-question {
+      margin: 24px 0 25px;
+      font-size: clamp(1.12rem, 3vw, 1.35rem);
+      font-weight: 700;
+    }
+
+    .welcome-decoration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 24px 0 30px;
+      color: var(--amaranth);
+      font-size: 1.4rem;
+    }
+
+    .welcome-decoration::before,
+    .welcome-decoration::after {
+      width: 70px;
+      height: 1px;
+      content: "";
+      background: var(--pink);
+    }
+
+    .primary-button,
+    .special-button {
+      display: inline-flex;
+      min-height: 54px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid var(--amaranth);
+      border-radius: 999px;
+      padding: 13px 25px;
+      color: var(--wine);
+      background: linear-gradient(135deg, var(--lavender-blush), var(--mimi-pink));
+      box-shadow: 0 8px 24px rgba(255, 162, 185, .23);
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .primary-button:hover,
+    .special-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(255, 162, 185, .34);
+    }
+
+    button:focus-visible {
+      outline: 3px solid var(--wine);
+      outline-offset: 4px;
+    }
+
+    .floating {
+      position: absolute;
+      z-index: -1;
+      color: var(--cherry-blossom);
+      opacity: .72;
+      user-select: none;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .flower-one { top: 27%; left: 3%; font-size: 2.1rem; }
+    .flower-two { top: 57%; right: 4%; font-size: 2.5rem; animation-delay: -2s; }
+    .cat-one { bottom: 17%; left: 8%; font-size: 1.9rem; animation-delay: -1s; }
+    .heart-one { top: 21%; right: 11%; font-size: 1.5rem; animation-delay: -3s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-12px) rotate(5deg); }
+    }
+
+    .birthday-content {
+      display: none;
+      padding: 30px 0 0;
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    .birthday-content.is-visible {
+      display: block;
+      animation: reveal .75s ease forwards;
+    }
+
+    @keyframes reveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .welcome.is-hidden {
+      display: none;
+    }
+
+    .section-heading {
+      margin: 0 0 7px;
+      color: var(--wine);
+      font-size: clamp(3.2rem, 8vw, 5.2rem);
+      line-height: 1;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      margin: 0 0 28px;
+      color: #765c57;
+      text-align: center;
+    }
+
+    .letter-card {
+      position: relative;
+      margin: 0 auto 42px;
+      border: 1px solid rgba(255, 162, 185, .68);
+      border-radius: 26px;
+      padding: clamp(25px, 6vw, 48px);
+      background: linear-gradient(145deg, var(--lavender-blush), var(--mimi-pink));
+      box-shadow: var(--shadow);
+    }
+
+    .letter-card::before {
+      position: absolute;
+      top: 15px;
+      right: 18px;
+      content: "♡";
+      color: var(--wine);
+      font-size: 1.5rem;
+    }
+
+    .letter-card p {
+      margin: 0;
+      color: var(--coffee);
+      font-size: clamp(1rem, 2.7vw, 1.15rem);
+      line-height: 1.9;
+    }
+
+    .letter-signature {
+      display: block;
+      margin-top: 16px;
+      color: var(--wine);
+      font-family: "Caveat", cursive;
+      font-size: 2rem;
+      text-align: right;
+    }
+
+    .gallery-section { margin: 0 auto 46px; }
+
+    .gallery-title {
+      margin: 0 0 15px;
+      color: var(--wine);
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      border: 7px solid white;
+      border-radius: 24px;
+      background: var(--lavender-blush);
+      box-shadow: var(--shadow);
+      touch-action: pan-y;
+    }
+
+    .carousel-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 70svh;
+      object-fit: contain;
+      transition: opacity .25s ease;
+    }
+
+    .carousel-image.is-changing { opacity: .25; }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      transform: translateY(-50%);
+      border: 1px solid rgba(92, 36, 48, .15);
+      border-radius: 50%;
+      color: var(--wine);
+      background: rgba(253, 251, 247, .91);
+      cursor: pointer;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 14px rgba(74, 46, 43, .12);
+    }
+
+    .carousel-arrow:hover { background: white; }
+    .carousel-arrow.previous { left: 13px; }
+    .carousel-arrow.next { right: 13px; }
+
+    .carousel-caption {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 35px 15px 13px;
+      color: white;
+      background: linear-gradient(transparent, rgba(50, 25, 29, .55));
+      font-size: .9rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 9px;
+      margin-top: 16px;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border: 0;
+      border-radius: 50%;
+      padding: 0;
+      background: var(--pink);
+      cursor: pointer;
+      transition: width .2s ease, background .2s ease;
+    }
+
+    .carousel-dot[aria-current="true"] {
+      width: 26px;
+      border-radius: 999px;
+      background: var(--amaranth);
+    }
+
+    .special-section {
+      border: 1px dashed var(--cherry-blossom);
+      border-radius: 26px;
+      padding: 28px 20px;
+      background: rgba(250, 232, 237, .48);
+      text-align: center;
+    }
+
+    .special-section h2 {
+      margin: 0 0 5px;
+      color: var(--wine);
+      font-size: 2.8rem;
+    }
+
+    .special-section p {
+      margin: 0 0 18px;
+      color: #765c57;
+    }
+
+    .footer-note {
+      margin: 38px 0 0;
+      color: var(--wine);
+      font-family: "Caveat", cursive;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    .modal {
+      position: fixed;
+      z-index: 10;
+      inset: 0;
+      display: grid;
+      visibility: hidden;
+      place-items: center;
+      padding: 24px;
+      background: rgba(55, 31, 34, .76);
+      opacity: 0;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+
+    .modal.is-open {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal-card {
+      position: relative;
+      width: min(100%, 900px);
+      transform: scale(.97);
+      border: 8px solid var(--lavender-blush);
+      border-radius: 24px;
+      padding: 9px;
+      background: var(--mimi-pink);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, .3);
+      transition: transform .25s ease;
+    }
+
+    .modal.is-open .modal-card { transform: scale(1); }
+
+    .special-image {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: 75svh;
+      margin: 0 auto;
+      border-radius: 12px;
+      object-fit: contain;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 2px solid white;
+      border-radius: 50%;
+      color: var(--wine);
+      background: var(--pink);
+      cursor: pointer;
+      font-size: 1.4rem;
+    }
+
+    .modal-caption {
+      margin: 7px 0 0;
+      color: var(--wine);
+      font-family: "Caveat", cursive;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    .download-photo {
+      display: flex;
+      width: fit-content;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      margin: 10px auto 2px;
+      border: 1px solid var(--amaranth);
+      border-radius: 999px;
+      padding: 10px 18px;
+      color: var(--wine);
+      background: var(--lavender-blush);
+      font-size: .95rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .download-photo:hover {
+      transform: translateY(-1px);
+      background: var(--pink);
+    }
+
+    @media (max-width: 600px) {
+      .page-shell { width: min(100% - 28px, 900px); padding-top: 22px; }
+      .welcome { min-height: calc(100svh - 65px); padding: 35px 0 50px; }
+      .flower-one { top: 18%; left: 0; }
+      .flower-two { top: 66%; right: 0; }
+      .cat-one { bottom: 8%; left: 4%; }
+      .heart-one { top: 17%; right: 5%; }
+      .carousel { border-width: 5px; border-radius: 18px; }
+      .carousel-arrow { width: 38px; height: 38px; }
+      .letter-card { border-radius: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <div class="top-note">Te amo hoy, mañana y siempre</div>
+
+    <span class="floating flower-one" aria-hidden="true">✿</span>
+    <span class="floating flower-two" aria-hidden="true">✾</span>
+    <span class="floating cat-one" aria-hidden="true">🐱</span>
+    <span class="floating heart-one" aria-hidden="true">♡</span>
+
+    <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+      <div class="welcome-inner">
+        <p class="eyebrow">Una sorpresa hecha con amor</p>
+        <h1 id="welcome-title">Para alguien<br>muy especial</h1>
+        <div class="welcome-decoration" aria-hidden="true">✿</div>
+        <p class="welcome-question">¿De quién es el cumpleaños?</p>
+        <button class="primary-button" id="unlock-button" type="button">
+          De mi novia Michu <span aria-hidden="true">♡</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="birthday-content" id="birthday-content" aria-labelledby="birthday-title">
+      <p class="eyebrow" style="text-align:center">Por que hoy es tu cumpleaños</p>
+      <h1 class="section-heading" id="birthday-title">MiVIDA ♡</h1>
+      <p class="section-subtitle">Un día tan bonito como tú. Feliz cumpleaños, mi amor.</p>
+
+      <article class="letter-card" aria-label="Carta de cumpleaños para Michu">
+        <p>Hoy que es tu cumpleaños, espero simplemente que los cumplas muy feliz y qué más pedir a la vida que estar contigo no solo desear que cumplas muchos años más sino que dios me permita compartir la vida hoy mañana y siempre contigo y compartir los mejores momentos de estar juntos por que aun que no haya dinero o si haya dinero siempre has estado conmigo en las buenas y malas como yo lo estaré contigo en los éxitos y caída</p>
+        <span class="letter-signature">Con todo mi amor ♡</span>
+      </article>
+
+      <section class="gallery-section" aria-labelledby="gallery-title">
+        <h2 class="gallery-title" id="gallery-title">Nuestros momentos</h2>
+        <div class="carousel" id="carousel" aria-roledescription="carrusel" aria-label="Fotos de nuestros momentos">
+          <img class="carousel-image" id="carousel-image" src="fotos/img1.jpeg" alt="Foto de un momento especial juntos, foto 1 de 5">
+          <button class="carousel-arrow previous" id="previous-button" type="button" aria-label="Foto anterior">‹</button>
+          <button class="carousel-arrow next" id="next-button" type="button" aria-label="Foto siguiente">›</button>
+          <div class="carousel-caption" id="carousel-caption" aria-live="polite">Un recuerdo para guardar siempre ♡</div>
+        </div>
+        <div class="carousel-dots" id="carousel-dots" aria-label="Elegir foto"></div>
+      </section>
+
+      <section class="special-section" aria-labelledby="special-title">
+        <h2 id="special-title">Un recuerdo especial</h2>
+        <p>Hay momentos que merecen un lugarcito especial.</p>
+        <button class="special-button" id="open-modal-button" type="button">
+          Ver la foto especial de su cumpleaños <span aria-hidden="true">♡</span>
+        </button>
+      </section>
+
+      <p class="footer-note">Que la vida nos regale muchos cumpleaños juntitos asi todos pequeñitos chiquititos pequeñitos ♡</p>
+
+      <section class="dedication-invite" aria-label="Invitación a una dedicatoria especial">
+        <p class="last-gift-eyebrow">Tengo algo especial para ti</p>
+        <a class="dedication-link" href="regalo.html">Esta canción te la dedico para ti ♡</a>
+      </section>
+    </section>
+  </main>
+
+  <div class="modal" id="photo-modal" role="dialog" aria-modal="true" aria-labelledby="modal-caption" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" id="close-modal-button" type="button" aria-label="Cerrar foto">×</button>
+      <img class="special-image" id="special-image" src="fotos/Imagen_especial.png" alt="Foto especial de cumpleaños para Michu">
+      <p class="modal-caption" id="modal-caption">Nuestra foto especial ♡</p>
+      <a class="download-photo" href="fotos/Imagen_especial.png" download="Foto-especial-para-Michu.png">Descargar foto al teléfono ↓</a>
+    </div>
+  </div>
+
+  <script>
+    // Las fotos están en la carpeta "fotos", en el mismo orden que aparecen aquí.
+    const photos = [
+      "fotos/img1.jpeg",
+      "fotos/img2.jpeg",
+      "fotos/img3.jpeg",
+      "fotos/img4.jpeg",
+      "fotos/img5.jpeg"
+    ];
+    const specialPhoto = "fotos/Imagen_especial.png";
+
+    const welcome = document.getElementById("welcome");
+    const birthdayContent = document.getElementById("birthday-content");
+    const carouselImage = document.getElementById("carousel-image");
+    const carouselCaption = document.getElementById("carousel-caption");
+    const dotsContainer = document.getElementById("carousel-dots");
+    const carousel = document.getElementById("carousel");
+    const modal = document.getElementById("photo-modal");
+    const closeModalButton = document.getElementById("close-modal-button");
+    let currentPhoto = 0;
+    let autoplay;
+    let touchStartX = 0;
+
+    document.getElementById("unlock-button").addEventListener("click", () => {
+      welcome.classList.add("is-hidden");
+      birthdayContent.classList.add("is-visible");
+      window.setTimeout(() => birthdayContent.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+      startAutoplay();
+    });
+
+    function showPhoto(index) {
+      currentPhoto = (index + photos.length) % photos.length;
+      carouselImage.classList.add("is-changing");
+      window.setTimeout(() => {
+        carouselImage.src = photos[currentPhoto];
+        carouselImage.alt = `Foto de un momento especial juntos, foto ${currentPhoto + 1} de ${photos.length}`;
+        carouselCaption.textContent = `Un recuerdo para guardar siempre ♡ ${currentPhoto + 1} / ${photos.length}`;
+        carouselImage.classList.remove("is-changing");
+      }, 150);
+      [...dotsContainer.children].forEach((dot, dotIndex) => {
+        dot.setAttribute("aria-current", String(dotIndex === currentPhoto));
+      });
+    }
+
+    photos.forEach((_, index) => {
+      const dot = document.createElement("button");
+      dot.className = "carousel-dot";
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Mostrar foto ${index + 1}`);
+      dot.setAttribute("aria-current", String(index === 0));
+      dot.addEventListener("click", () => {
+        showPhoto(index);
+        startAutoplay();
+      });
+      dotsContainer.append(dot);
+    });
+
+    function startAutoplay() {
+      window.clearInterval(autoplay);
+      autoplay = window.setInterval(() => showPhoto(currentPhoto + 1), 5000);
+    }
+
+    document.getElementById("previous-button").addEventListener("click", () => {
+      showPhoto(currentPhoto - 1);
+      startAutoplay();
+    });
+    document.getElementById("next-button").addEventListener("click", () => {
+      showPhoto(currentPhoto + 1);
+      startAutoplay();
+    });
+
+    carousel.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") showPhoto(currentPhoto - 1);
+      if (event.key === "ArrowRight") showPhoto(currentPhoto + 1);
+    });
+    carousel.addEventListener("touchstart", (event) => {
+      touchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+    carousel.addEventListener("touchend", (event) => {
+      const swipeDistance = event.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(swipeDistance) > 45) showPhoto(currentPhoto + (swipeDistance < 0 ? 1 : -1));
+    }, { passive: true });
+
+    const specialImage = document.getElementById("special-image");
+    document.getElementById("open-modal-button").addEventListener("click", () => {
+      specialImage.src = specialPhoto;
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      closeModalButton.focus();
+    });
+
+    function closeModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.getElementById("open-modal-button").focus();
+    }
+
+    closeModalButton.addEventListener("click", closeModal);
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+    });
+  </script>
+  <script src="script.js" defer></script>
+</body>
+</html>
